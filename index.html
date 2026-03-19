@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Material Notes</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="rail">
+        <button class="mdc-fab app-fab" aria-label="Create note" type="button">
+          <div class="mdc-fab__ripple"></div>
+          <span class="material-icons mdc-fab__icon">add</span>
+        </button>
+
+        <button class="mdc-icon-button material-icons rail-action active" aria-label="Notes view" type="button">
+          sticky_note_2
+        </button>
+        <button class="mdc-icon-button material-icons rail-action" aria-label="Archive" type="button">
+          archive
+        </button>
+        <button class="mdc-icon-button material-icons rail-action" aria-label="Labels" type="button">
+          label
+        </button>
+      </aside>
+
+      <main class="content">
+        <header class="top-app-bar mdc-card card-surface">
+          <div class="top-app-bar__title-group">
+            <button class="mdc-icon-button material-icons menu-button" aria-label="Open navigation" type="button">
+              menu
+            </button>
+            <div>
+              <p class="eyebrow">Material 2 notes</p>
+              <h1>Capture ideas with calm, tactile surfaces.</h1>
+            </div>
+          </div>
+          <div class="top-app-bar__actions">
+            <label class="search-field mdc-text-field mdc-text-field--with-leading-icon mdc-text-field--outlined">
+              <span class="mdc-notched-outline">
+                <span class="mdc-notched-outline__leading"></span>
+                <span class="mdc-notched-outline__notch">
+                  <span class="mdc-floating-label" id="search-label">Search notes</span>
+                </span>
+                <span class="mdc-notched-outline__trailing"></span>
+              </span>
+              <i class="material-icons mdc-text-field__icon mdc-text-field__icon--leading">search</i>
+              <input class="mdc-text-field__input" type="search" id="searchInput" aria-labelledby="search-label" />
+            </label>
+            <button class="mdc-icon-button material-icons" aria-label="Refresh" type="button">
+              refresh
+            </button>
+          </div>
+        </header>
+
+        <section class="hero mdc-card card-surface">
+          <div>
+            <p class="section-label">Today</p>
+            <h2>Your ideas, organized like paper cards.</h2>
+            <p>
+              Built with the Material Components Web SDK so the page uses actual
+              Material 2 primitives, ripples, cards, buttons, and text fields.
+            </p>
+          </div>
+          <div class="hero__meta">
+            <div>
+              <strong>12</strong>
+              <span>active notes</span>
+            </div>
+            <div>
+              <strong>4</strong>
+              <span>labels</span>
+            </div>
+            <div>
+              <strong>3</strong>
+              <span>pinned</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="composer mdc-card card-surface">
+          <div class="composer__header">
+            <span class="material-icons">edit_note</span>
+            <h2>Create a note</h2>
+          </div>
+          <form id="noteForm" class="composer__form">
+            <label class="mdc-text-field mdc-text-field--outlined composer-field">
+              <span class="mdc-notched-outline">
+                <span class="mdc-notched-outline__leading"></span>
+                <span class="mdc-notched-outline__notch">
+                  <span class="mdc-floating-label" id="note-title-label">Title</span>
+                </span>
+                <span class="mdc-notched-outline__trailing"></span>
+              </span>
+              <input
+                class="mdc-text-field__input"
+                id="noteTitle"
+                type="text"
+                maxlength="60"
+                aria-labelledby="note-title-label"
+                required
+              />
+            </label>
+
+            <label class="mdc-text-field mdc-text-field--outlined mdc-text-field--textarea composer-field composer-textarea">
+              <span class="mdc-notched-outline">
+                <span class="mdc-notched-outline__leading"></span>
+                <span class="mdc-notched-outline__notch">
+                  <span class="mdc-floating-label" id="note-body-label">Details</span>
+                </span>
+                <span class="mdc-notched-outline__trailing"></span>
+              </span>
+              <span class="mdc-text-field__resizer">
+                <textarea
+                  class="mdc-text-field__input"
+                  id="noteBody"
+                  rows="4"
+                  aria-labelledby="note-body-label"
+                  required
+                ></textarea>
+              </span>
+            </label>
+
+            <div class="composer__footer">
+              <div class="chips" aria-label="Suggested labels">
+                <span class="chip active">Work</span>
+                <span class="chip">Personal</span>
+                <span class="chip">Ideas</span>
+              </div>
+              <button type="submit" class="mdc-button mdc-button--raised save-button">
+                <div class="mdc-button__ripple"></div>
+                <span class="mdc-button__label">Save note</span>
+              </button>
+            </div>
+          </form>
+        </section>
+
+        <section>
+          <div class="section-heading">
+            <h2>Pinned notes</h2>
+            <p>Quick access to the items you revisit most.</p>
+          </div>
+          <div class="notes-grid" id="notesGrid">
+            <article class="note-card mdc-card accent-yellow" data-note>
+              <div class="note-card__top">
+                <span class="badge">Pinned</span>
+                <button class="mdc-icon-button material-icons small" aria-label="More actions" type="button">
+                  more_vert
+                </button>
+              </div>
+              <h3>Sprint retro talking points</h3>
+              <p>Wins, blockers, and one improvement to pilot during next week's standups.</p>
+              <footer>
+                <span><span class="material-icons">schedule</span> 9:00 AM</span>
+                <span><span class="material-icons">label</span> Work</span>
+              </footer>
+            </article>
+
+            <article class="note-card mdc-card accent-blue" data-note>
+              <div class="note-card__top">
+                <span class="badge">Pinned</span>
+                <button class="mdc-icon-button material-icons small" aria-label="More actions" type="button">
+                  more_vert
+                </button>
+              </div>
+              <h3>Reading list</h3>
+              <p>Material motion case studies, inclusive color systems, and writing for interfaces.</p>
+              <footer>
+                <span><span class="material-icons">import_contacts</span> 5 items</span>
+                <span><span class="material-icons">label</span> Ideas</span>
+              </footer>
+            </article>
+
+            <article class="note-card mdc-card accent-pink" data-note>
+              <div class="note-card__top">
+                <span class="badge">Pinned</span>
+                <button class="mdc-icon-button material-icons small" aria-label="More actions" type="button">
+                  more_vert
+                </button>
+              </div>
+              <h3>Weekend plan</h3>
+              <p>Farmers market, coffee with Maya, and a full reset before Monday morning.</p>
+              <footer>
+                <span><span class="material-icons">wb_sunny</span> Sat</span>
+                <span><span class="material-icons">label</span> Personal</span>
+              </footer>
+            </article>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <template id="noteTemplate">
+      <article class="note-card mdc-card accent-green" data-note>
+        <div class="note-card__top">
+          <span class="badge">New</span>
+          <button class="mdc-icon-button material-icons small" aria-label="More actions" type="button">
+            more_vert
+          </button>
+        </div>
+        <h3></h3>
+        <p></p>
+        <footer>
+          <span><span class="material-icons">edit</span> Just now</span>
+          <span><span class="material-icons">label</span> Quick note</span>
+        </footer>
+      </article>
+    </template>
+
+    <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
